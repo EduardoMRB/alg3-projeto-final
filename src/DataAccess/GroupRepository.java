@@ -15,7 +15,7 @@ public class GroupRepository implements RepositoryInterface {
 	 * {@inheritDoc}
 	 */
 	public ResultSet findAll() throws SQLException {
-		String sql = "SELECT id, name FROM group";
+		String sql = "SELECT id, name FROM grupo";
 		
 		return this.db.createStatement().executeQuery(sql);
 	}
@@ -24,12 +24,12 @@ public class GroupRepository implements RepositoryInterface {
 	 * {@inheritDoc}
 	 */
 	public ResultSet findById(int id) throws SQLException {
-		String sql = "SELECT id, name FROM grupo WHERE group.id = ?";
+		String sql = "SELECT id, name FROM grupo WHERE id = ?";
 		
 		PreparedStatement stm = this.db.prepareStatement(sql);
 		stm.setInt(1, id);
 		
-		return stm.getResultSet();
+		return stm.executeQuery();
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class GroupRepository implements RepositoryInterface {
 	 * {@inheritDoc}
 	 */
 	public void delete(EntityInterface entity) throws SQLException {
-		String sql = "DELETE FROM group WHERE group.id = ?";
+		String sql = "DELETE FROM grupo WHERE id = ?";
 		
 		PreparedStatement stm = this.db.prepareStatement(sql);
 		Group group = (Group) entity;
@@ -60,7 +60,7 @@ public class GroupRepository implements RepositoryInterface {
 	 * {@inheritDoc}
 	 */
 	public void update(EntityInterface entity) throws SQLException {
-		String sql = "UPDATE group SET group.name = ? WHERE group.id = ?";
+		String sql = "UPDATE grupo SET name = ? WHERE id = ?";
 		
 		PreparedStatement stm = this.db.prepareStatement(sql);
 		Group group = (Group) entity;
