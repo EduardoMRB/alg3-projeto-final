@@ -24,7 +24,7 @@ public class GroupRepository implements RepositoryInterface {
 	 * {@inheritDoc}
 	 */
 	public ResultSet findById(int id) throws SQLException {
-		String sql = "SELECT id, name FROM group WHERE group.id = ?";
+		String sql = "SELECT id, name FROM grupo WHERE group.id = ?";
 		
 		PreparedStatement stm = this.db.prepareStatement(sql);
 		stm.setInt(1, id);
@@ -36,7 +36,7 @@ public class GroupRepository implements RepositoryInterface {
 	 * {@inheritDoc}
 	 */
 	public void insert(EntityInterface entity) throws SQLException {
-		String sql = "INSERT INTO group (name) VALUES (?)";
+		String sql = "INSERT INTO grupo (name) VALUES (?)";
 		
 		PreparedStatement stm = this.db.prepareStatement(sql);
 		Group group = (Group) entity;
