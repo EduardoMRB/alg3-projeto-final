@@ -37,7 +37,7 @@ public class GroupRepositoryTest extends TestCase {
 		try {
 			this.groupManager.insert(this.group);
 			ResultSet rs = this.groupManager.findById(1);
-			this.assertEquals("Alunos", rs.getString(1));
+			GroupRepositoryTest.assertEquals("Alunos", rs.getString(1));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
