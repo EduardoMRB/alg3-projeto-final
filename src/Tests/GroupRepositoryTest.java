@@ -2,9 +2,12 @@ package Tests;
 
 import java.sql.*;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
+import junit.framework.TestCase;
 import DataAccess.GroupRepository;
 import Entity.Group;
-import junit.framework.TestCase;
 
 public class GroupRepositoryTest extends TestCase {
 	protected Group group;
@@ -32,7 +35,8 @@ public class GroupRepositoryTest extends TestCase {
 		this.group = null;
 	}
 	
-	public void testGroupIsInserted() {
+	@Test
+	public void groupIsInsertedAndRetrievedCorrectly() {
 		this.group.setName("Alunos");
 		try {
 			this.groupManager.insert(this.group);
