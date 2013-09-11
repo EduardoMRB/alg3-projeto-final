@@ -31,7 +31,8 @@ public class SignUser extends javax.swing.JDialog {
         namejLabel.setText("Nome:");
 
         namejTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 namejTextFieldActionPerformed(evt);
             }
         });
@@ -44,7 +45,8 @@ public class SignUser extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         cpfjFormattedTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cpfjFormattedTextFieldActionPerformed(evt);
             }
         });
@@ -53,7 +55,8 @@ public class SignUser extends javax.swing.JDialog {
 
         sairjButton.setText("Sair");
         sairjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairjButtonActionPerformed(evt);
             }
         });
@@ -145,7 +148,8 @@ public class SignUser extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 SignUser dialog = new SignUser(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

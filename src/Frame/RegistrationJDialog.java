@@ -32,7 +32,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
         cadastrarAssinantesjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         cadastrarAssinantesjButton.setText(" Assinantes");
         cadastrarAssinantesjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarAssinantesjButtonActionPerformed(evt);
             }
         });
@@ -40,7 +41,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
         cadastrarGruposjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         cadastrarGruposjButton.setText("Grupos");
         cadastrarGruposjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarGruposjButtonActionPerformed(evt);
             }
         });
@@ -48,7 +50,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
         sairjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         sairjButton.setText("SAIR");
         sairjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairjButtonActionPerformed(evt);
             }
         });
@@ -56,7 +59,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
         cadastrarUsuariosjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         cadastrarUsuariosjButton.setText("Usuários");
         cadastrarUsuariosjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarUsuariosjButtonActionPerformed(evt);
             }
         });
@@ -64,7 +68,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
         cadastrarNewsletterjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         cadastrarNewsletterjButton.setText("Newsletter");
         cadastrarNewsletterjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarNewsletterjButtonActionPerformed(evt);
             }
         });
@@ -72,7 +77,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
         cadastrarCategoriasjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         cadastrarCategoriasjButton.setText("Categorias");
         cadastrarCategoriasjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarCategoriasjButtonActionPerformed(evt);
             }
         });
@@ -80,7 +86,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
         cadastrarSecoesjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         cadastrarSecoesjButton.setText("Seções");
         cadastrarSecoesjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarSecoesjButtonActionPerformed(evt);
             }
         });
@@ -200,7 +207,8 @@ public class RegistrationJDialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 RegistrationJDialog dialog = new RegistrationJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

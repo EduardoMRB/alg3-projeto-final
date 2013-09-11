@@ -2,7 +2,6 @@ package Tests;
 
 import java.sql.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -16,6 +15,7 @@ public class GroupRepositoryTest extends TestCase {
 	
 	protected GroupRepository groupManager;
 	
+	@Override
 	public void setUp() {
 		this.group = new Group();
 		try {
@@ -28,6 +28,7 @@ public class GroupRepositoryTest extends TestCase {
 		}
 	}
 	
+	@Override
 	public void tearDown() throws SQLException {
 		this.db.createStatement().execute("DROP TABLE grupo");
 		this.db.close();
@@ -41,9 +42,9 @@ public class GroupRepositoryTest extends TestCase {
 		try {
 			this.groupManager.insert(this.group);
 			ResultSet rs = this.groupManager.findById(1);
-			GroupRepositoryTest.assertFalse(rs.next());
-			GroupRepositoryTest.assertEquals("Alunos", rs.getString("name"));
-			GroupRepositoryTest.assertEquals(1, rs.getString("id"));
+			TestCase.assertFalse(rs.next());
+			TestCase.assertEquals("Alunos", rs.getString("name"));
+			TestCase.assertEquals(1, rs.getString("id"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -40,7 +40,8 @@ public class CreateNewsletterJDialog extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         datajFormattedTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 datajFormattedTextFieldActionPerformed(evt);
             }
         });
@@ -51,7 +52,8 @@ public class CreateNewsletterJDialog extends javax.swing.JDialog {
         sairjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         sairjButton.setText("Sair");
         sairjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairjButtonActionPerformed(evt);
             }
         });
@@ -136,7 +138,8 @@ public class CreateNewsletterJDialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 CreateNewsletterJDialog dialog = new CreateNewsletterJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

@@ -14,6 +14,7 @@ public class GroupRepository implements RepositoryInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ResultSet findAll() throws SQLException {
 		String sql = "SELECT id, name FROM grupo";
 		
@@ -23,6 +24,7 @@ public class GroupRepository implements RepositoryInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ResultSet findById(int id) throws SQLException {
 		String sql = "SELECT id, name FROM grupo WHERE id = ?";
 		
@@ -35,6 +37,7 @@ public class GroupRepository implements RepositoryInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void insert(EntityInterface entity) throws SQLException {
 		String sql = "INSERT INTO grupo (name) VALUES (?)";
 		
@@ -47,6 +50,7 @@ public class GroupRepository implements RepositoryInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void delete(EntityInterface entity) throws SQLException {
 		String sql = "DELETE FROM grupo WHERE id = ?";
 		
@@ -59,6 +63,7 @@ public class GroupRepository implements RepositoryInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void update(EntityInterface entity) throws SQLException {
 		String sql = "UPDATE grupo SET name = ? WHERE id = ?";
 		
