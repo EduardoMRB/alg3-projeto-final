@@ -118,9 +118,9 @@ public class CreateCategoriasJDialog extends javax.swing.JDialog {
         	category.setDescription(descricaojTextPane.getText());
 			catRepo.insert(category);
 			this.dispose();
-		} catch (SQLException e1) {
+		} catch (SQLException ex) {
 			System.out.println("Não foi possível cadastrar categoria");
-			e1.printStackTrace();
+			ex.printStackTrace();
 		}
     }
     

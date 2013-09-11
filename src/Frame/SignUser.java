@@ -1,13 +1,20 @@
 package Frame;
 
-public class SignUser extends javax.swing.JDialog {
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
+import Entity.User;
+import DataAccess.UserRepository;
+
+public class SignUser extends javax.swing.JDialog {
+	protected UserRepository userRepo;
     /**
      * Creates new form CadastraUsuarioJDialog
      */
     public SignUser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        userRepo = new UserRepository(Main.App.db);
     }
 
     /**
@@ -21,8 +28,10 @@ public class SignUser extends javax.swing.JDialog {
 
         namejLabel = new javax.swing.JLabel();
         namejTextField = new javax.swing.JTextField();
-        cpfjLabel = new javax.swing.JLabel();
-        cpfjFormattedTextField = new javax.swing.JFormattedTextField();
+        emailjLabel = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JFormattedTextField();
+        passwdjLabel = new javax.swing.JLabel();
+        passwdjTextField = new javax.swing.JTextField();
         savejButton = new javax.swing.JButton();
         sairjButton = new javax.swing.JButton();
 
@@ -37,21 +46,17 @@ public class SignUser extends javax.swing.JDialog {
             }
         });
 
-        cpfjLabel.setText("CPF:");
-
-        try {
-            cpfjFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        cpfjFormattedTextField.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpfjFormattedTextFieldActionPerformed(evt);
-            }
-        });
+        emailjLabel.setText("Email:");
+        
+        passwdjLabel.setText("Senha:");
 
         savejButton.setText("Salvar");
+        savejButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				salvarjButtonActionPerformed(e);
+			}
+        });
 
         sairjButton.setText("Sair");
         sairjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,11 +78,12 @@ public class SignUser extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(namejTextField))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cpfjLabel)
+                        .addComponent(emailjLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cpfjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+                	.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING))
             .addGroup(layout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addComponent(savejButton)
@@ -94,8 +100,8 @@ public class SignUser extends javax.swing.JDialog {
                     .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpfjLabel)
-                    .addComponent(cpfjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailjLabel)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(savejButton)
@@ -118,6 +124,20 @@ public class SignUser extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_sairjButtonActionPerformed
+    
+    private void salvarjButtonActionPerformed(java.awt.event.ActionEvent e) {
+    	try {
+    		User user = new User();
+        	user.setName(namejTextField.getText());
+        	user.setEmail(emailTextField.getText());
+        	
+        	userRepo.insert(user);
+        	this.dispose();
+    	} catch (SQLException ex) {
+    		System.out.println("Não foi possível cadastrar usuário");
+    		ex.printStackTrace();
+    	}
+    }
 
     /**
      * @param args the command line arguments
@@ -162,10 +182,12 @@ public class SignUser extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField cpfjFormattedTextField;
-    private javax.swing.JLabel cpfjLabel;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel emailjLabel;
     private javax.swing.JLabel namejLabel;
     private javax.swing.JTextField namejTextField;
+    private javax.swing.JTextField passwdjTextField;
+    private javax.swing.JLabel passwdjLabel;
     private javax.swing.JButton sairjButton;
     private javax.swing.JButton savejButton;
     // End of variables declaration//GEN-END:variables

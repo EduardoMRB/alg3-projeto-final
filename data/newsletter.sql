@@ -29,13 +29,13 @@ ALTER TABLE category
   OWNER TO postgres;
 
 
--- Table: "user"
+-- Table: newsuser
 
--- DROP TABLE "user";
+-- DROP TABLE newsuser;
 
-CREATE TABLE "user"
+CREATE TABLE newsuser
 (
-  id serial NOT NULL,
+  id integer NOT NULL DEFAULT nextval('user_id_seq'::regclass),
   name character varying(50),
   email character varying(50),
   passwd character varying(32),
@@ -44,8 +44,9 @@ CREATE TABLE "user"
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE "user"
+ALTER TABLE newsuser
   OWNER TO postgres;
+
 
 
 -- Table: subscribergroup

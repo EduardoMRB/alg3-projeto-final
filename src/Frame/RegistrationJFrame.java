@@ -49,6 +49,12 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         });
 
         cadastrarUsuariosjButton.setText("Usuários");
+        cadastrarUsuariosjButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cadastrarUsuariosActionPerformed(e);
+			}
+        });
 
         cadastrarAssinantesjButton.setText(" Assinantes");
         cadastrarAssinantesjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +147,11 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     private void cadastrarGrupojButtonActionPerformed(java.awt.event.ActionEvent e) {
     	CreateGroupJDialog groupFrame = new CreateGroupJDialog(this, true);
     	groupFrame.setVisible(true);
+    }
+    
+    private void cadastrarUsuariosActionPerformed(java.awt.event.ActionEvent e) {
+    	SignUser userFrame = new SignUser(this, true);
+		userFrame.setVisible(true);
     }
     
     /**
