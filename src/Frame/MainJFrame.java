@@ -32,7 +32,8 @@ public class MainJFrame extends javax.swing.JFrame {
         cadastrosjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         cadastrosjButton.setText("Cadastros");
         cadastrosjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrosjButtonActionPerformed(evt);
             }
         });
@@ -40,7 +41,8 @@ public class MainJFrame extends javax.swing.JFrame {
         sairjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         sairjButton.setText("Sair");
         sairjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairjButtonActionPerformed(evt);
             }
         });
@@ -120,7 +122,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new MainJFrame().setVisible(true);
             }
         });

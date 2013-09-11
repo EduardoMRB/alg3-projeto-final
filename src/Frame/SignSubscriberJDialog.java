@@ -32,7 +32,8 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
 
         sairjButton.setText("Sair");
         sairjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairjButtonActionPerformed(evt);
             }
         });
@@ -138,7 +139,8 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 SignSubscriberJDialog dialog = new SignSubscriberJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

@@ -1,6 +1,6 @@
 package Entity;
 
-public class Subscriber extends Person {
+public class Subscriber extends Person implements EntityInterface {
 	private int id;
 	
 	private String email;

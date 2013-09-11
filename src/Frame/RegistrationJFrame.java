@@ -30,7 +30,8 @@ public class RegistrationJFrame extends javax.swing.JFrame {
 
         cadastrarNewsletterjButton.setText("Newsletter");
         cadastrarNewsletterjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarNewsletterjButtonActionPerformed(evt);
             }
         });
@@ -43,7 +44,8 @@ public class RegistrationJFrame extends javax.swing.JFrame {
 
         cadastrarAssinantesjButton.setText(" Assinantes");
         cadastrarAssinantesjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarAssinantesjButtonActionPerformed(evt);
             }
         });
@@ -135,7 +137,8 @@ public class RegistrationJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new RegistrationJFrame().setVisible(true);
             }
         });
