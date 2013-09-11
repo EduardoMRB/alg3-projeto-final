@@ -1,13 +1,20 @@
 package Frame;
 
-public class CreateCategoriasJDialog extends javax.swing.JDialog {
+import java.sql.SQLException;
 
+import DataAccess.CategoryRepository;
+import Entity.Category;
+
+public class CreateCategoriasJDialog extends javax.swing.JDialog {
+	CategoryRepository catRepo;
+	
     /**
      * Creates new form CadastraCategoriasJDialog
      */
     public CreateCategoriasJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        catRepo = new CategoryRepository(Main.App.db);
     }
 
     /**
@@ -39,6 +46,12 @@ public class CreateCategoriasJDialog extends javax.swing.JDialog {
 
         savejButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         savejButton.setText("Salvar");
+        savejButton.addActionListener(new java.awt.event.ActionListener() {
+        	@Override
+        	public void actionPerformed(java.awt.event.ActionEvent e) {
+        		savejButtonActionPerformed(e);
+        	}
+        });
 
         sairjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         sairjButton.setText("Sair");
@@ -98,6 +111,19 @@ public class CreateCategoriasJDialog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_sairjButtonActionPerformed
 
+    private void savejButtonActionPerformed(java.awt.event.ActionEvent e) {
+    	try {
+    		Category category = new Category();    
+        	category.setTitle(titulojTextField.getText());
+        	category.setDescription(descricaojTextPane.getText());
+			catRepo.insert(category);
+			this.dispose();
+		} catch (SQLException e1) {
+			System.out.println("Não foi possível cadastrar categoria");
+			e1.printStackTrace();
+		}
+    }
+    
     /**
      * @param args the command line arguments
      */

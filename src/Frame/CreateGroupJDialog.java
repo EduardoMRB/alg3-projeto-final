@@ -1,13 +1,21 @@
 package Frame;
 
-public class CreateGroupJDialog extends javax.swing.JDialog {
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
+import DataAccess.GroupRepository;
+import Entity.Group;
+
+public class CreateGroupJDialog extends javax.swing.JDialog {
+	protected GroupRepository groupRepo;
+	
     /**
      * Creates new form CadastraGruposJDialog
      */
     public CreateGroupJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        groupRepo = new GroupRepository(Main.App.db);
     }
 
     /**
@@ -22,11 +30,17 @@ public class CreateGroupJDialog extends javax.swing.JDialog {
         savejButton = new javax.swing.JButton();
         sairjButton = new javax.swing.JButton();
         namejLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        namejTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         savejButton.setText("Salvar");
+        savejButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				savejButtonActionPerformed(e);
+			}
+        });
 
         sairjButton.setText("Sair");
         sairjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -46,7 +60,7 @@ public class CreateGroupJDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(namejLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1)
+                .addComponent(namejTextField)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(89, 89, 89)
@@ -61,7 +75,7 @@ public class CreateGroupJDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(namejLabel)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(savejButton)
@@ -76,6 +90,21 @@ public class CreateGroupJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_sairjButtonActionPerformed
+    
+    private void savejButtonActionPerformed(ActionEvent e) {
+    	try {
+    		Group group = new Group();
+        	group.setName(namejTextField.getText());
+        	
+        	groupRepo.insert(group);
+        	
+        	this.dispose();
+    	} catch (SQLException ex) {
+    		System.out.println("Não foi possível cadastrar grupo");
+    		ex.printStackTrace();
+    	}
+    	
+	}
 
     /**
      * @param args the command line arguments
@@ -120,7 +149,7 @@ public class CreateGroupJDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField namejTextField;
     private javax.swing.JLabel namejLabel;
     private javax.swing.JButton sairjButton;
     private javax.swing.JButton savejButton;

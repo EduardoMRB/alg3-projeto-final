@@ -1,5 +1,7 @@
 package Frame;
 
+import java.awt.event.ActionEvent;
+
 public class RegistrationJFrame extends javax.swing.JFrame {
 
     /**
@@ -39,6 +41,12 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         cadastrarSecoesjButton.setText("Seções");
 
         cadastrarCategoriasjButton.setText("Categorias");
+        cadastrarCategoriasjButton.addActionListener(new java.awt.event.ActionListener() {
+        	@Override
+        	public void actionPerformed(java.awt.event.ActionEvent e) {
+        		cadastrarCategoriasjButtonActionPerformed(e);
+        	}
+        });
 
         cadastrarUsuariosjButton.setText("Usuários");
 
@@ -51,8 +59,20 @@ public class RegistrationJFrame extends javax.swing.JFrame {
         });
 
         cadastrarGruposjButton.setText("Grupos");
+        cadastrarGruposjButton.addActionListener(new java.awt.event.ActionListener() {
+        	@Override
+        	public void actionPerformed(java.awt.event.ActionEvent e) {
+        		cadastrarGrupojButtonActionPerformed(e);
+        	}
+        });
 
         sairjButton.setText("SAIR");
+        sairjButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sairjButtonActionPerformed(e);
+			}
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,9 +125,24 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarNewsletterjButtonActionPerformed
 
     private void cadastrarAssinantesjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAssinantesjButtonActionPerformed
-        // TODO add your handling code here:
+        SignSubscriberJDialog subsFrame = new SignSubscriberJDialog(this, true);
+        subsFrame.setVisible(true);
     }//GEN-LAST:event_cadastrarAssinantesjButtonActionPerformed
 
+    private void cadastrarCategoriasjButtonActionPerformed(java.awt.event.ActionEvent e) {
+    	CreateCategoriasJDialog catFrame = new CreateCategoriasJDialog(this, true);
+    	catFrame.setVisible(true);
+    }
+    
+    private void sairjButtonActionPerformed(java.awt.event.ActionEvent e) {
+    	this.dispose();
+    }
+    
+    private void cadastrarGrupojButtonActionPerformed(java.awt.event.ActionEvent e) {
+    	CreateGroupJDialog groupFrame = new CreateGroupJDialog(this, true);
+    	groupFrame.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */

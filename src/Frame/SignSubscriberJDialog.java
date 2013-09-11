@@ -1,6 +1,12 @@
 package Frame;
 
+import java.sql.SQLException;
+
+import DataAccess.SubscriberRepository;
+import Entity.Subscriber;
+
 public class SignSubscriberJDialog extends javax.swing.JDialog {
+	protected SubscriberRepository subsRepo;
 
     /**
      * Creates new form CadastraAssinanteJDialog
@@ -8,6 +14,7 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
     public SignSubscriberJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.subsRepo = new SubscriberRepository(Main.App.db);
     }
 
     /**
@@ -49,6 +56,12 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
         grupojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         savejButton.setText("Salvar");
+        savejButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+                savejButtonActionPerformed(e);
+            }
+        });
 
         emailjLabel.setText("Email:");
 
@@ -106,9 +119,21 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sairjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairjButtonActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_sairjButtonActionPerformed
+    
+    private void savejButtonActionPerformed(java.awt.event.ActionEvent e) {
+    	Subscriber subs = new Subscriber();
+    	subs.setEmail(emailjTextField.getText());
+    	subs.setCpf(cpfjFormattedTextField.getText());
+    	//subs.setName();
+    	try {
+			subsRepo.insert(subs);
+		} catch (SQLException e1) {
+			System.out.println("Não foi possível cadastrar assinante");
+			e1.printStackTrace();
+		}
+    }
 
     /**
      * @param args the command line arguments

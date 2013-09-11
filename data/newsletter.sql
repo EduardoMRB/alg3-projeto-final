@@ -28,21 +28,42 @@ WITH (
 ALTER TABLE category
   OWNER TO postgres;
 
--- Table: "group"
 
--- DROP TABLE "group";
+-- Table: "user"
 
-CREATE TABLE "group"
+-- DROP TABLE "user";
+
+CREATE TABLE "user"
 (
   id serial NOT NULL,
+  name character varying(50),
+  email character varying(50),
+  passwd character varying(32),
+  CONSTRAINT user_pk PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "user"
+  OWNER TO postgres;
+
+
+-- Table: subscribergroup
+
+-- DROP TABLE subscribergroup;
+
+CREATE TABLE subscribergroup
+(
+  id integer NOT NULL DEFAULT nextval('group_id_seq'::regclass),
   name character varying(50),
   CONSTRAINT group_pk PRIMARY KEY (id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE "group"
+ALTER TABLE subscribergroup
   OWNER TO postgres;
+
 
 -- Table: newsletter
 
@@ -90,14 +111,18 @@ ALTER TABLE section
 
 -- DROP TABLE section;
 
-CREATE TABLE section
+
+
+-- Table: newsletter_category
+
+-- DROP TABLE newsletter_category;
+
+CREATE TABLE newsletter_category
 (
   id serial NOT NULL,
-  category_id integer,
   newsletter_id integer,
-  title character varying(50),
-  content text,
-  CONSTRAINT section_pk PRIMARY KEY (id),
+  category_id integer,
+  CONSTRAINT newsletter_category_pk PRIMARY KEY (id),
   CONSTRAINT category_fk FOREIGN KEY (category_id)
       REFERENCES category (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -108,5 +133,5 @@ CREATE TABLE section
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE section
+ALTER TABLE newsletter_category
   OWNER TO postgres;
