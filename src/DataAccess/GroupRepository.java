@@ -18,7 +18,8 @@ public class GroupRepository implements RepositoryInterface {
 	public ResultSet findAll() throws SQLException {
 		String sql = "SELECT id, name FROM subscribergroup";
 		
-		return this.db.createStatement().executeQuery(sql);
+		Statement stm = db.createStatement();
+		return stm.executeQuery(sql);
 	}
 	
 	/**

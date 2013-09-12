@@ -1,13 +1,27 @@
 package Frame;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.JOptionPane;
+
+import DataAccess.NewsletterRepository;
+import Entity.Newsletter;
 
 public class CreateNewsletterJDialog extends javax.swing.JDialog {
-
+	NewsletterRepository newsRepo;
     /**
      * Creates new form CadastraNewsletterJDialog
      */
     public CreateNewsletterJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        newsRepo = new NewsletterRepository(Main.App.db);
     }
 
     /**
@@ -48,6 +62,12 @@ public class CreateNewsletterJDialog extends javax.swing.JDialog {
 
         savejButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         savejButton.setText("Salvar");
+        savejButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveActionPerformed(e);
+			}
+        });
 
         sairjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         sairjButton.setText("Sair");
@@ -59,43 +79,43 @@ public class CreateNewsletterJDialog extends javax.swing.JDialog {
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(savejButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(situacaojLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(situacaojCheckBox))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(datejLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(datajFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(sairjButton)
-                .addContainerGap(57, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(savejButton)
+        				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        					.addGroup(layout.createSequentialGroup()
+        						.addComponent(situacaojLabel)
+        						.addGap(18)
+        						.addComponent(situacaojCheckBox, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+        					.addGroup(layout.createSequentialGroup()
+        						.addComponent(datejLabel)
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addComponent(datajFormattedTextField, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))))
+        			.addGap(18)
+        			.addComponent(sairjButton)
+        			.addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(datejLabel)
-                    .addComponent(datajFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(situacaojLabel)
-                    .addComponent(situacaojCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(savejButton)
-                    .addComponent(sairjButton))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(datejLabel)
+        				.addComponent(datajFormattedTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(situacaojCheckBox, 0, 0, Short.MAX_VALUE)
+        				.addComponent(situacaojLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(savejButton)
+        				.addComponent(sairjButton))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,6 +128,25 @@ public class CreateNewsletterJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_sairjButtonActionPerformed
+    
+    private void saveActionPerformed(java.awt.event.ActionEvent e) {
+    	try {
+    		Newsletter newsletter = new Newsletter();
+        	Date date = new SimpleDateFormat("dd/MM/yyyy").parse(datajFormattedTextField.getText());
+        	newsletter.setDate(date);
+        	newsletter.setEnabled(situacaojCheckBox.isSelected());
+        	
+        	newsRepo.insert(newsletter);
+        	JOptionPane.showMessageDialog(null, "Newsletter inserida com sucesso");
+        	this.dispose();
+    	} catch (SQLException ex) {
+    		System.out.println("Não foi possivel inserir newsletter");
+    		ex.printStackTrace();
+    	} catch (ParseException ex) {
+    		System.out.println("Erro ao converter data");
+    		System.out.println(ex.getMessage());
+    	}
+    }
 
     /**
      * @param args the command line arguments

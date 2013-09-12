@@ -1,12 +1,22 @@
 package Frame;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import DataAccess.GroupRepository;
 import DataAccess.SubscriberRepository;
+import Entity.Group;
 import Entity.Subscriber;
+
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.JOptionPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class SignSubscriberJDialog extends javax.swing.JDialog {
 	protected SubscriberRepository subsRepo;
+	protected GroupRepository groupRepo;
 
     /**
      * Creates new form CadastraAssinanteJDialog
@@ -14,7 +24,9 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
     public SignSubscriberJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.subsRepo = new SubscriberRepository(Main.App.db);
+        Connection db = Main.App.db;
+        this.subsRepo = new SubscriberRepository(db);
+        //this.groupRepo = new GroupRepository(db);
     }
 
     /**
@@ -27,12 +39,10 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         sairjButton = new javax.swing.JButton();
-        cpfjFormattedTextField = new javax.swing.JFormattedTextField();
         grupojLabel = new javax.swing.JLabel();
         grupojComboBox = new javax.swing.JComboBox();
         savejButton = new javax.swing.JButton();
         emailjLabel = new javax.swing.JLabel();
-        cpfjLabel = new javax.swing.JLabel();
         emailjTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -45,15 +55,21 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
             }
         });
 
-        try {
-            cpfjFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         grupojLabel.setText("Grupo:");
-
-        grupojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        
+        grupojComboBox.setModel(new javax.swing.DefaultComboBoxModel());
+        try {
+        	groupRepo = new GroupRepository(Main.App.db);
+			ResultSet groupsRs = groupRepo.findAll();
+			while (groupsRs.next()) {
+				Group group = new Group();
+				group.setId(groupsRs.getInt("id"));
+				group.setName(groupsRs.getString("name"));
+				grupojComboBox.addItem(group);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 
         savejButton.setText("Salvar");
         savejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -65,55 +81,45 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
 
         emailjLabel.setText("Email:");
 
-        cpfjLabel.setText("CPF:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(grupojLabel)
-                    .addComponent(emailjLabel)
-                    .addComponent(cpfjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(emailjTextField)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cpfjFormattedTextField)
-                            .addComponent(grupojComboBox, 0, 95, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(savejButton)
-                .addGap(28, 28, 28)
-                .addComponent(sairjButton)
-                .addContainerGap(153, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(grupojLabel)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(grupojComboBox, 0, 95, Short.MAX_VALUE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(110)
+        					.addComponent(savejButton)
+        					.addGap(37)
+        					.addComponent(sairjButton))
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(emailjLabel)
+        					.addGap(18)
+        					.addComponent(emailjTextField, GroupLayout.PREFERRED_SIZE, 326, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailjLabel)
-                    .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpfjLabel)
-                    .addComponent(cpfjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(grupojLabel)
-                    .addComponent(grupojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(savejButton)
-                    .addComponent(sairjButton))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(emailjLabel)
+        				.addComponent(emailjTextField, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+        			.addGap(55)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(grupojLabel)
+        				.addComponent(grupojComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(savejButton)
+        				.addComponent(sairjButton)))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,15 +129,16 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_sairjButtonActionPerformed
     
     private void savejButtonActionPerformed(java.awt.event.ActionEvent e) {
-    	Subscriber subs = new Subscriber();
-    	subs.setEmail(emailjTextField.getText());
-    	subs.setCpf(cpfjFormattedTextField.getText());
-    	//subs.setName();
     	try {
+    		Subscriber subs = new Subscriber();
+        	subs.setEmail(emailjTextField.getText());
+        	subs.setGroup((Group) grupojComboBox.getSelectedItem());
 			subsRepo.insert(subs);
-		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, "Assinante cadastrado com sucesso");
+			this.dispose();
+		} catch (SQLException ex) {
 			System.out.println("Não foi possível cadastrar assinante");
-			e1.printStackTrace();
+			ex.printStackTrace();
 		}
     }
 
@@ -177,9 +184,6 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField cpfjFormattedTextField;
-    private javax.swing.JLabel cpfjLabel;
     private javax.swing.JLabel emailjLabel;
     private javax.swing.JTextField emailjTextField;
     private javax.swing.JComboBox grupojComboBox;

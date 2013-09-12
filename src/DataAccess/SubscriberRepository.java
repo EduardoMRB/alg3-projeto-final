@@ -36,15 +36,14 @@ public class SubscriberRepository implements RepositoryInterface {
 	@Override
 	public void insert(EntityInterface entity) throws SQLException {
 		String sql = new StringBuilder()
-			.append("INSERT INTO subscriber (email, cpf, group_id)")
-			.append("VALUES (?, ?, ?)")
+			.append("INSERT INTO subscriber (email, group_id)")
+			.append("VALUES (?, ?)")
 			.toString();
 	
 		PreparedStatement stm = this.db.prepareStatement(sql);
 		Subscriber subscriber = (Subscriber) entity;
 		stm.setString(1, subscriber.getEmail());
-		stm.setString(2, subscriber.getCpf());
-		stm.setInt(3, subscriber.getGroup().getId());
+		stm.setInt(2, subscriber.getGroup().getId());
 		stm.execute();
 	}
 

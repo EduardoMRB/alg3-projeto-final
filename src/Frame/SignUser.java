@@ -3,6 +3,8 @@ package Frame;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import Entity.User;
 import DataAccess.UserRepository;
 
@@ -133,6 +135,7 @@ public class SignUser extends javax.swing.JDialog {
         	
         	userRepo.insert(user);
         	this.dispose();
+        	JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso");
     	} catch (SQLException ex) {
     		System.out.println("Não foi possível cadastrar usuário");
     		ex.printStackTrace();

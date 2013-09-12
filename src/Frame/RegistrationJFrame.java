@@ -1,6 +1,12 @@
 package Frame;
 
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Color;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
 
 public class RegistrationJFrame extends javax.swing.JFrame {
 
@@ -8,6 +14,7 @@ public class RegistrationJFrame extends javax.swing.JFrame {
      * Creates new form CadastrosJFrame
      */
     public RegistrationJFrame() {
+    	getContentPane().setBackground(new Color(238, 238, 238));
         initComponents();
     }
 
@@ -20,114 +27,132 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cadastrarNewsletterjButton = new javax.swing.JButton();
-        cadastrarSecoesjButton = new javax.swing.JButton();
-        cadastrarCategoriasjButton = new javax.swing.JButton();
-        cadastrarUsuariosjButton = new javax.swing.JButton();
-        cadastrarAssinantesjButton = new javax.swing.JButton();
-        cadastrarGruposjButton = new javax.swing.JButton();
-        sairjButton = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        cadastrarNewsletterjButton.setText("Newsletter");
-        cadastrarNewsletterjButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarNewsletterjButtonActionPerformed(evt);
-            }
-        });
-
-        cadastrarSecoesjButton.setText("Seções");
-
-        cadastrarCategoriasjButton.setText("Categorias");
-        cadastrarCategoriasjButton.addActionListener(new java.awt.event.ActionListener() {
-        	@Override
-        	public void actionPerformed(java.awt.event.ActionEvent e) {
-        		cadastrarCategoriasjButtonActionPerformed(e);
-        	}
-        });
-
-        cadastrarUsuariosjButton.setText("Usuários");
-        cadastrarUsuariosjButton.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarUsuariosjButton = new javax.swing.JButton();
+        
+                cadastrarUsuariosjButton.setText("Usuários");
+                cadastrarUsuariosjButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cadastrarUsuariosActionPerformed(e);
 			}
-        });
-
-        cadastrarAssinantesjButton.setText(" Assinantes");
-        cadastrarAssinantesjButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
+                });
+                
+                        cadastrarNewsletterjButton = new javax.swing.JButton();
+                        
+                                cadastrarNewsletterjButton.setText("Newsletter");
+                                cadastrarNewsletterjButton.addActionListener(new java.awt.event.ActionListener() {
+                                    @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarAssinantesjButtonActionPerformed(evt);
-            }
-        });
-
-        cadastrarGruposjButton.setText("Grupos");
-        cadastrarGruposjButton.addActionListener(new java.awt.event.ActionListener() {
-        	@Override
-        	public void actionPerformed(java.awt.event.ActionEvent e) {
-        		cadastrarGrupojButtonActionPerformed(e);
-        	}
-        });
-
-        sairjButton.setText("SAIR");
-        sairjButton.addActionListener(new java.awt.event.ActionListener() {
+                                        cadastrarNewsletterjButtonActionPerformed(evt);
+                                    }
+                                });
+                                cadastrarGruposjButton = new javax.swing.JButton();
+                                
+                                        cadastrarGruposjButton.setText("Grupos");
+                                        cadastrarGruposjButton.addActionListener(new java.awt.event.ActionListener() {
+                                        	@Override
+                                        	public void actionPerformed(java.awt.event.ActionEvent e) {
+                                        		cadastrarGrupojButtonActionPerformed(e);
+                                        	}
+                                        });
+                                        cadastrarCategoriasjButton = new javax.swing.JButton();
+                                        
+                                                cadastrarCategoriasjButton.setText("Categorias");
+                                                cadastrarCategoriasjButton.addActionListener(new java.awt.event.ActionListener() {
+                                                	@Override
+                                                	public void actionPerformed(java.awt.event.ActionEvent e) {
+                                                		cadastrarCategoriasjButtonActionPerformed(e);
+                                                	}
+                                                });
+                                                sairjButton = new javax.swing.JButton();
+                                                
+                                                        sairjButton.setText("SAIR");
+                                                        sairjButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				sairjButtonActionPerformed(e);
 			}
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cadastrarAssinantesjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cadastrarCategoriasjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(cadastrarNewsletterjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cadastrarSecoesjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cadastrarUsuariosjButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(cadastrarGruposjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(sairjButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cadastrarSecoesjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cadastrarNewsletterjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cadastrarCategoriasjButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(cadastrarUsuariosjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cadastrarAssinantesjButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(cadastrarGruposjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(sairjButton)
-                .addContainerGap())
-        );
+                                                        });
+                                                        cadastrarAssinantesjButton = new javax.swing.JButton();
+                                                        
+                                                                cadastrarAssinantesjButton.setText(" Assinantes");
+                                                                cadastrarAssinantesjButton.addActionListener(new java.awt.event.ActionListener() {
+                                                                    @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                                                        cadastrarAssinantesjButtonActionPerformed(evt);
+                                                                    }
+                                                                });
+                                                        
+                                                        label = new JLabel("");
+                                        cadastrarSecoesjButton = new javax.swing.JButton();
+                                        cadastrarSecoesjButton.addActionListener(new ActionListener() {
+                                        	public void actionPerformed(ActionEvent e) {
+                                        		cadastrarSecoesActionPerformed(e);
+                                        	}
+                                        });
+                                        
+                                                cadastrarSecoesjButton.setText("Seções");
+                GroupLayout groupLayout = new GroupLayout(getContentPane());
+                groupLayout.setHorizontalGroup(
+                	groupLayout.createParallelGroup(Alignment.LEADING)
+                		.addGroup(groupLayout.createSequentialGroup()
+                			.addContainerGap()
+                			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                				.addGroup(groupLayout.createSequentialGroup()
+                					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+                							.addComponent(label)
+                							.addGap(88))
+                						.addGroup(groupLayout.createSequentialGroup()
+                							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+                								.addComponent(cadastrarAssinantesjButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                								.addComponent(cadastrarCategoriasjButton, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                							.addPreferredGap(ComponentPlacement.RELATED)))
+                					.addGap(18)
+                					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                						.addComponent(cadastrarGruposjButton, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                						.addComponent(cadastrarNewsletterjButton, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE))
+                					.addPreferredGap(ComponentPlacement.RELATED)
+                					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+                						.addComponent(cadastrarUsuariosjButton, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                						.addComponent(cadastrarSecoesjButton, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                					.addContainerGap())
+                				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+                					.addComponent(sairjButton, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+                					.addGap(253))))
+                );
+                groupLayout.setVerticalGroup(
+                	groupLayout.createParallelGroup(Alignment.LEADING)
+                		.addGroup(groupLayout.createSequentialGroup()
+                			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                				.addGroup(groupLayout.createSequentialGroup()
+                					.addContainerGap()
+                					.addComponent(cadastrarSecoesjButton, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
+                				.addGroup(groupLayout.createSequentialGroup()
+                					.addGap(6)
+                					.addComponent(label)
+                					.addPreferredGap(ComponentPlacement.RELATED)
+                					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                						.addComponent(cadastrarGruposjButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                						.addComponent(cadastrarAssinantesjButton, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))))
+                			.addPreferredGap(ComponentPlacement.RELATED)
+                			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                				.addComponent(cadastrarUsuariosjButton, GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                				.addComponent(cadastrarCategoriasjButton, GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                				.addComponent(cadastrarNewsletterjButton, GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))
+                			.addGap(129)
+                			.addComponent(sairjButton, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+                			.addGap(21))
+                );
+                getContentPane().setLayout(groupLayout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarNewsletterjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarNewsletterjButtonActionPerformed
-        // TODO add your handling code here:
+    	CreateNewsletterJDialog newsletterFrame = new CreateNewsletterJDialog(this, true);
+    	newsletterFrame.setVisible(true);
     }//GEN-LAST:event_cadastrarNewsletterjButtonActionPerformed
 
     private void cadastrarAssinantesjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAssinantesjButtonActionPerformed
@@ -152,6 +177,11 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     private void cadastrarUsuariosActionPerformed(java.awt.event.ActionEvent e) {
     	SignUser userFrame = new SignUser(this, true);
 		userFrame.setVisible(true);
+    }
+    
+    private void cadastrarSecoesActionPerformed(java.awt.event.ActionEvent e) {
+    	CreateSectionJDialog sectionFrame = new CreateSectionJDialog(this, true);
+    	sectionFrame.setVisible(true);
     }
     
     /**
@@ -197,5 +227,6 @@ public class RegistrationJFrame extends javax.swing.JFrame {
     private javax.swing.JButton cadastrarSecoesjButton;
     private javax.swing.JButton cadastrarUsuariosjButton;
     private javax.swing.JButton sairjButton;
+    private JLabel label;
     // End of variables declaration//GEN-END:variables
 }

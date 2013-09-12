@@ -1,13 +1,27 @@
 package Frame;
 
-public class CreateSectionJDialog extends javax.swing.JDialog {
+import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
+import DataAccess.CategoryRepository;
+import DataAccess.NewsletterRepository;
+import DataAccess.SectionRepository;
+import Entity.Category;
+import Entity.Newsletter;
+import Entity.Section;
+
+public class CreateSectionJDialog extends javax.swing.JDialog {
+	SectionRepository secRepo;
     /**
      * Creates new form CadastraSecoesJDialog
      */
     public CreateSectionJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        secRepo = new SectionRepository(Main.App.db);
     }
 
     /**
@@ -40,7 +54,20 @@ public class CreateSectionJDialog extends javax.swing.JDialog {
         conteudojLabel.setText("Conteudo:");
 
         categoriajComboBox.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
-        categoriajComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoriajComboBox.setModel(new javax.swing.DefaultComboBoxModel());
+        try {
+        	CategoryRepository catRepo = new CategoryRepository(Main.App.db);
+        	ResultSet catRs = catRepo.findAll();
+        	while (catRs.next()) {
+        		Category category = new Category();
+        		category.setDescription(catRs.getString("description"));
+        		category.setId(catRs.getInt("id"));
+        		category.setTitle(catRs.getString("title"));
+        		categoriajComboBox.addItem(category);
+        	}
+        } catch (SQLException ex) {
+        	ex.printStackTrace();
+        }
 
         jLabel1.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         jLabel1.setText("Categoria:");
@@ -49,12 +76,31 @@ public class CreateSectionJDialog extends javax.swing.JDialog {
         newsletterjLabel.setText("Newsletter:");
 
         newsletterjComboBox.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
-        newsletterjComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        newsletterjComboBox.setModel(new javax.swing.DefaultComboBoxModel());
+        try {
+        	NewsletterRepository newsRepo = new NewsletterRepository(Main.App.db);
+        	ResultSet newsRs = newsRepo.findAll();
+        	while (newsRs.next()) {
+        		Newsletter newsletter = new Newsletter();
+        		newsletter.setDate(newsRs.getDate("date"));
+        		newsletter.setId(newsRs.getInt("id"));
+        		newsletter.setEnabled(newsRs.getBoolean("enabled"));
+        		newsletterjComboBox.addItem(newsletter);
+        	}
+        } catch (SQLException ex) {
+        	ex.printStackTrace();
+        }
 
         jScrollPane1.setViewportView(conteudojTextPane);
 
         savejButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         savejButton.setText("Salvar");
+        savejButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveActionPerformed(e);
+			}
+        });
 
         sairjButton.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
         sairjButton.setText("Sair");
@@ -132,6 +178,23 @@ public class CreateSectionJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_sairjButtonActionPerformed
+    
+    private void saveActionPerformed(java.awt.event.ActionEvent e) {
+    	try {
+    		Section section = new Section();
+        	section.setCategory((Category) categoriajComboBox.getSelectedItem());
+        	section.setNewsletter((Newsletter) newsletterjComboBox.getSelectedItem());
+        	section.setTitle(titulojTextField.getText());
+        	section.setContent(conteudojTextPane.getText());
+        	
+        	secRepo.insert(section);
+        	JOptionPane.showMessageDialog(null, "Seção inserida com sucesso");
+        	dispose();
+    	} catch (SQLException ex) {
+    		System.out.println("Não foi possivel inserir seção");
+    		ex.printStackTrace();
+    	}
+    }
 
     /**
      * @param args the command line arguments

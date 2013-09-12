@@ -3,7 +3,7 @@ package Entity;
 import java.util.Date;
 import java.util.List;
 
-public class Newsletter {
+public class Newsletter implements EntityInterface {
 	protected int id;
 	
 	protected List <Section> sections;
@@ -42,5 +42,9 @@ public class Newsletter {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public String toString() {
+		return this.date.toString();
 	}
 }

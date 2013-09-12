@@ -39,8 +39,8 @@ public class NewsletterRepository implements RepositoryInterface {
 		
 		Newsletter newsletter = (Newsletter) entity;
 		PreparedStatement stm = this.db.prepareStatement(sql);
-		stm.setDate(1, (Date) newsletter.getDate());
-		stm.setBoolean(1, newsletter.isEnabled());
+		stm.setDate(1, new java.sql.Date(newsletter.getDate().getTime()));
+		stm.setBoolean(2, newsletter.isEnabled());
 		stm.execute();
 	}
 
