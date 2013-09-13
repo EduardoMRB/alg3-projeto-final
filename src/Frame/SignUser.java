@@ -7,6 +7,11 @@ import javax.swing.JOptionPane;
 
 import Entity.User;
 import DataAccess.UserRepository;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
 
 public class SignUser extends javax.swing.JDialog {
 	protected UserRepository userRepo;
@@ -67,49 +72,57 @@ public class SignUser extends javax.swing.JDialog {
                 sairjButtonActionPerformed(evt);
             }
         });
+        
+        btnList = new JButton("Listar");
+        btnList.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		listActionPerformed(e);
+        	}
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(namejLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(namejTextField))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(emailjLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-                	.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(savejButton)
-                .addGap(27, 27, 27)
-                .addComponent(sairjButton)
-                .addContainerGap(85, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(namejLabel)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(namejTextField, 263, 263, 263))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(emailjLabel)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addComponent(btnList)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(savejButton)
+        			.addGap(18)
+        			.addComponent(sairjButton)
+        			.addGap(51))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(namejLabel)
-                    .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailjLabel)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(savejButton)
-                    .addComponent(sairjButton))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(namejLabel)
+        				.addComponent(namejTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(emailjLabel)
+        				.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnList)
+        				.addComponent(savejButton)
+        				.addComponent(sairjButton))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,6 +153,11 @@ public class SignUser extends javax.swing.JDialog {
     		System.out.println("Não foi possível cadastrar usuário");
     		ex.printStackTrace();
     	}
+    }
+    
+    private void listActionPerformed(java.awt.event.ActionEvent e) {
+    	ListUserJDialog listUser = new ListUserJDialog(this, true);
+    	listUser.setVisible(true);
     }
 
     /**
@@ -193,5 +211,6 @@ public class SignUser extends javax.swing.JDialog {
     private javax.swing.JLabel passwdjLabel;
     private javax.swing.JButton sairjButton;
     private javax.swing.JButton savejButton;
+    private JButton btnList;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,15 @@
 package Frame;
 
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.Color;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.event.ActionListener;
 
 public class RegistrationJFrame extends javax.swing.JFrame {

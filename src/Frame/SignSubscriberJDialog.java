@@ -13,6 +13,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SignSubscriberJDialog extends javax.swing.JDialog {
 	protected SubscriberRepository subsRepo;
@@ -80,28 +83,38 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
         });
 
         emailjLabel.setText("Email:");
+        
+        JButton btnListar = new JButton("Listar");
+        btnListar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		listarActionPerformed(e);
+        	}
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
         					.addContainerGap()
-        					.addComponent(grupojLabel)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(grupojComboBox, 0, 95, Short.MAX_VALUE))
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(grupojLabel)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(grupojComboBox, 0, 326, Short.MAX_VALUE))
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(emailjLabel)
+        							.addGap(18)
+        							.addComponent(emailjTextField, GroupLayout.PREFERRED_SIZE, 326, GroupLayout.PREFERRED_SIZE))))
         				.addGroup(layout.createSequentialGroup()
-        					.addGap(110)
+        					.addGap(46)
+        					.addComponent(btnListar)
+        					.addPreferredGap(ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
         					.addComponent(savejButton)
-        					.addGap(37)
-        					.addComponent(sairjButton))
-        				.addGroup(layout.createSequentialGroup()
-        					.addContainerGap()
-        					.addComponent(emailjLabel)
-        					.addGap(18)
-        					.addComponent(emailjTextField, GroupLayout.PREFERRED_SIZE, 326, GroupLayout.PREFERRED_SIZE)))
-        			.addContainerGap(34, Short.MAX_VALUE))
+        					.addGap(56)
+        					.addComponent(sairjButton)))
+        			.addGap(130))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -114,10 +127,12 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(grupojLabel)
         				.addComponent(grupojComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(savejButton)
-        				.addComponent(sairjButton)))
+        				.addComponent(sairjButton)
+        				.addComponent(btnListar))
+        			.addContainerGap())
         );
         getContentPane().setLayout(layout);
 
@@ -140,6 +155,10 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
 			System.out.println("Não foi possível cadastrar assinante");
 			ex.printStackTrace();
 		}
+    }
+    
+    private void listarActionPerformed(java.awt.event.ActionEvent e) {
+    	
     }
 
     /**
@@ -190,5 +209,4 @@ public class SignSubscriberJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel grupojLabel;
     private javax.swing.JButton sairjButton;
     private javax.swing.JButton savejButton;
-    // End of variables declaration//GEN-END:variables
 }
